@@ -1,0 +1,22 @@
+
+program.exe: thuyng2Proj7.o MyList.o FileList.o Island7.o MyQueueStack.o
+	g++ -o program.exe thuyng2Proj7.o MyList.o FileList.o Island7.o MyQueueStack.o
+thuyng2Proj7.o: thuyng2Proj7.cpp header.h
+	g++ -c thuyng2Proj7.cpp
+MyList.o: MyList.cpp header.h
+	g++ -c MyList.cpp
+FileList.o: FileList.cpp header.h
+	g++ -c FileList.cpp
+Island7.o: Island7.cpp header.h
+	g++ -c Island7.cpp
+MyQueueStack.o: MyQueueStack.cpp header.h
+	g++ -c MyQueueStack.cpp
+
+run:
+	./program.exe
+	
+valgrind:
+	valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./program.exe
+	
+remove:
+	find . -type f -name '*.o' -delete
